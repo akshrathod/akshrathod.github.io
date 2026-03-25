@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Akshara Rathod Bhukya</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #06080a;
+    --surface: #0d1117;
+    --surface2: #131920;
+    --accent: #64ffda;
+    --accent2: #a78bfa;
+    --accent3: #f472b6;
+    --text: #cdd5e0;
+    --muted: #4a6070;
+    --border: rgba(100,255,218,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── CANVAS BACKGROUND ── */
+  #bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 40px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(6,8,10,0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-wordmark {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+  }
+
+  .nav-right { display: flex; gap: 28px; align-items: center; }
+  .nav-right a {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-right a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+    padding: 100px 80px 60px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
+
+  .hero-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 400;
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-bio {
+    font-size: 17px;
+    color: rgba(205,213,224,0.65);
+    font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 36px;
+    line-height: 1.75;
+  }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 11px 22px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-solid {
+    background: var(--accent);
+    color: #06080a;
+    font-weight: 700;
+    border-radius: 1px;
+  }
+  .btn-solid:hover { background: #a0ffe8; }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 1px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── HERO RIGHT: STAT CARDS ── */
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    padding: 32px 28px;
+    border-left: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-left-color: var(--accent); }
+
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 3.2rem;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .stat-num sup {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--accent);
+    vertical-align: super;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION SHARED ── */
+  .section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 80px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    opacity: 0.6;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.2rem, 3.7vw, 3.2rem);
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SKILLS BENTO ── */
+  #skills { background: var(--surface); }
+
+  .skills-bento {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2px;
+  }
+
+  .bento-card {
+    background: var(--bg);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bento-card.wide { grid-column: span 2; }
+  .bento-card.tall { grid-row: span 2; }
+
+  .bento-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    color: rgba(205,213,224,0.55);
+    transition: all 0.2s;
+    border-radius: 1px;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── BIG SKILL NUMBERS ── */
+  .bento-big-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 5rem;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .bento-big-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .exp-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid var(--border);
+    padding-left: 40px;
+    margin-left: 8px;
+  }
+
+  .exp-item {
+    position: relative;
+    padding-bottom: 48px;
+  }
+  .exp-item:last-child { padding-bottom: 0; }
+
+  .exp-dot {
+    position: absolute;
+    left: -47px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg);
+    transition: background 0.2s;
+  }
+  .exp-item:hover .exp-dot { background: var(--accent); }
+
+  .exp-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  .exp-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .exp-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .exp-achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .achievement {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(205,213,224,0.68);
+    line-height: 1.6;
+  }
+  .achievement::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── METRIC HIGHLIGHT ── */
+  .metric-pill {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(100,255,218,0.08);
+    border: 1px solid rgba(100,255,218,0.2);
+    color: var(--accent);
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--surface); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--bg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    cursor: default;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .project-card:hover { background: var(--surface2); }
+
+  .project-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: rgba(205,213,224,0.58);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stack-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 3px 8px;
+    background: rgba(167,139,250,0.06);
+    border: 1px solid rgba(167,139,250,0.15);
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .project-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--accent); }
+
+  /* HIGHLIGHTED PROJECT */
+  .project-card.featured {
+    grid-column: span 2;
+    flex-direction: row;
+    gap: 32px;
+    align-items: flex-start;
+    background: var(--surface2);
+    border-top: 1px solid rgba(100,255,218,0.15);
+  }
+
+  .project-card.featured .project-body { flex: 1; }
+  .project-card.featured .project-visual {
+    width: 160px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-metric-block {
+    background: var(--bg);
+    padding: 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .pmb-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .pmb-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    text-align: center;
+    padding: 100px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .contact-title em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .contact-sub {
+    font-size: 14px;
+    color: rgba(205,213,224,0.75);;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .contact-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── DIVIDER ── */
+  .hr { height: 1px; background: var(--border); margin: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding: 90px 28px 48px; }
+    .section-inner { padding: 60px 28px; }
+    .skills-bento { grid-template-columns: 1fr 1fr; }
+    .bento-card.wide { grid-column: span 2; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { flex-direction: column; grid-column: span 1; }
+    .project-card.featured .project-visual { width: 100%; flex-direction: row; }
+    #contact { padding: 80px 28px; }
+    nav { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANIMATED BACKGROUND CANVAS -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-wordmark">ARB ✦</span>
+  <div class="nav-right">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact Me</a>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" class="section">
+  <div class="hero-left">
+    <div class="hero-eyebrow">OPEN TO AI/ML AND GEN AI OPPORTUNITES</div>
+    <h1 class="hero-name">Akshara<br/><em>Rathod Bhukya</em></h1>
+    <p class="hero-role">AI/ML Engineer &nbsp;·&nbsp; New York City</p>
+    <p class="hero-bio">I see the world in patterns, systems, and how pieces connect.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#projects">See My Work</a>
+      <a class="btn btn-outline" href="https://github.com/akshrathod" target="_blank">GitHub ↗</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/arbhukya/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-num">3<sup>+</sup>Years</div>
+      <div class="stat-label">Data, ML & AI Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Context-Aware Systems</div>
+      <div class="stat-label">Finding the right information faster</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="font-size:2.6rem">3.97 GPA</div>
+      <div class="stat-label">M.S. Machine Learning</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Beyond the Prototype</div>
+      <div class="stat-label">Systems that actually run</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════ SKILLS ══════════════ -->
+<section id="skills" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="section-line"></div>
+    </div>
+
+      <div class="bento-card">
+        <div class="bento-label">Programming and Frameworks</div>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">Tensorflow</span>
+          <span class="chip">PyTorch</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span>
+          <span class="chip">NumPy</span><span class="chip">OpenCV</span>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div class="bento-label">Gen AI Systems</div>
+        <div class="skill-chips">
+          <span class="chip">LangChain</span><span class="chip">LlamaIndex</span>
+          <span class="chip">OpenAI API</span><span class="chip">Vector Databases</span>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div class="bento-label">Systems and Deployment</div>
+        <div class="skill-chips">
+          <span class="chip">FastAPI</span><span class="chip">GCP</span><span class="chip">Azure</span>
+          <span class="chip">Docker</span><span class="chip">MLflow</span>
+        </div>
+      </div>
+
+    <div class="bento-card">
+        <div class="bento-label">Data and BI</div>
+        <div class="skill-chips">
+          <span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Tableau</span>
+          <span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+          <span class="chip">ChromaDB</span><span class="chip">MongoDB</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════ EXPERIENCE ══════════════ -->
+<section id="experience" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-role">AI/ML Engineer</span>
+          <span class="exp-period">Jul 2025 – Present</span>
+        </div>
+        <div class="exp-company">KGS Technology Group · Alpharetta, GA (Remote)</div>
+        <div class="exp-achievements">
+          <div class="achievement">Built a context-aware RAG chatbot with LangChain + ChromaDB, deployed to 50+ employees. <span class="metric-pill">↓80% search time</span> <span class="metric-pill">&lt;1.2s latency</span></div>
+          <div class="achievement">Evaluated 15+ LLM frameworks; built 3 GenAI PoCs - chat copilot, document Q&A, task automation agent.</div>
+          <div class="achievement">Automated ML validation pipelines with MLflow + AutoML retraining triggers for 24/7 production stability.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-role">Generative AI Engineer</span>
+          <span class="exp-period">Aug 2024 – Jul 2025</span>
+        </div>
+        <div class="exp-company">Reality AI Inc. (formerly Radical X) · San Francisco, CA (Remote)</div>
+        <div class="exp-achievements">
+          <div class="achievement">Engineered RAG features for Marvel AI (LLM teaching assistant): quiz generator + PPT builder processing 3GB+ of course material.</div>
+          <div class="achievement">Upgraded retrieval from BM25 to hybrid semantic search - OpenAI embeddings + Redis. <span class="metric-pill">↑25% MRR</span> <span class="metric-pill">P95: 3.2s → 2.1s</span></div>
+          <div class="achievement">Deployed GenAI microservices on GCP Cloud Run via FastAPI. <span class="metric-pill">98.6% uptime</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-role">Teaching Assistant - Mathematical Foundations of ML</span>
+          <span class="exp-period">Jan 2023 – May 2024</span>
+        </div>
+        <div class="exp-company">Stevens Institute of Technology · Hoboken, NJ</div>
+        <div class="exp-achievements">
+          <div class="achievement">Supported 250+ graduate students across 3 semesters in probability theory, linear algebra, and optimization.</div>
+          <div class="achievement">Awarded Outstanding Course Assistant among 30+ TAs.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-role">Business Intelligence Analyst</span>
+          <span class="exp-period">Jan 2021 – Dec 2022</span>
+        </div>
+        <div class="exp-company">Ekdham · Hyderabad, India</div>
+        <div class="exp-achievements">
+          <div class="achievement">Built inventory planning system with T-SQL + Power BI tracking 8 KPIs across 50+ B2B clients. <span class="metric-pill">↓28% waste</span></div>
+          <div class="achievement">Identified purchasing anomalies with Python workflows. <span class="metric-pill">↑15% avg order value</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════ PROJECTS ══════════════ -->
+<section id="projects" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+      <!-- FEATURED -->
+      <div class="project-card featured">
+        <div class="project-body">
+          <div class="bento-label" style="margin-bottom:10px">Featured</div>
+          <div class="project-title" style="font-size:18px;margin-bottom:10px">ScreenTrail UI Agent</div>
+          <div class="project-desc" style="font-size:14px">Dual-agent system (planner + executor) that converts natural-language into Playwright browser actions. Plan - validate - execute loop automates complex multi-step workflows with no human input.</div>
+          <div class="project-stack" style="margin-top:14px">
+            <span class="stack-tag">Multi-Agent</span>
+            <span class="stack-tag">Playwright</span>
+            <span class="stack-tag">LLM Orchestration</span>
+            <span class="stack-tag">Python</span>
+          </div>
+          <a class="project-link" style="margin-top:16px;display:inline-block" href="https://github.com/akshrathod/screentrail-ui-agent" target="_blank">github.com/akshrathod/screentrail-ui-agent ↗</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-metric-block">
+            <div class="pmb-num">85%</div>
+            <div class="pmb-label">End-to-end success rate</div>
+          </div>
+          <div class="project-metric-block">
+            <div class="pmb-num">&lt;10s</div>
+            <div class="pmb-label">Per workflow (was 2–5 min)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Toxic Spans Detection</div>
+        <div class="project-desc">Fine-tuned BERT for span-level toxicity labeling. Optimized tokenization, class weighting, and hyperparameters for high-sensitivity content moderation.</div>
+        <div class="project-stack">
+          <span class="stack-tag">BERT</span><span class="stack-tag">PyTorch</span><span class="stack-tag">NLP</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">93% recall</span>
+          <a class="project-link" href="https://github.com/akshrathod/ToxicSpanDetection" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Exoplanet Classification</div>
+        <div class="project-desc">Ensemble classifiers on 9,500+ Kepler Objects of Interest with SMOTE oversampling and 67% dimensionality reduction via statistical feature selection.</div>
+        <div class="project-stack">
+          <span class="stack-tag">AdaBoost</span><span class="stack-tag">Random Forest</span><span class="stack-tag">SMOTE</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">99% recall</span>
+          <a class="project-link" href="https://github.com/akshrathod/ExoplanetClassification" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">AI vs. Human Text Classifier</div>
+        <div class="project-desc">SVM + neural networks with TF-IDF and Sentence-BERT to distinguish AI-generated vs. human responses across 1,000 Q&A pairs from 4 domains.</div>
+        <div class="project-stack">
+          <span class="stack-tag">SBERT</span><span class="stack-tag">SVM</span><span class="stack-tag">Selenium</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">90% accuracy</span>
+          <a class="project-link" href="https://github.com/akshrathod/ai-vs-human" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Assistive Navigation - Visually Impaired</div>
+        <div class="project-desc">Real-time YOLOv3 + U-Net (ResNet34) prototype for outdoor navigation. 95% hazard detection. Published at national conference, top 3 of 30 presentations.</div>
+        <div class="project-stack">
+          <span class="stack-tag">YOLOv3</span><span class="stack-tag">U-Net</span><span class="stack-tag">CV</span><span class="stack-tag">Published</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">98% distance accuracy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <h2 class="contact-title">Let's build<br/><em>something real.</em></h2>
+  <p class="contact-sub">Open to full-time roles in AI/ML and GenAI across the U.S. · Remote or On-site</p>
+  <div class="contact-row">
+    <a class="btn btn-outline" href="mailto:akshara03b@gmail.com">Email ↗</a>
+    <a class="btn btn-outline" href="https://linkedin.com/in/arbhukya/" target="_blank">LinkedIn ↗</a>
+    <a class="btn btn-outline" href="https://github.com/akshrathod" target="_blank">GitHub ↗</a>
+  </div>
+</section>
+
+<footer>© 2026 Akshara Rathod Bhukya &nbsp;·&nbsp; AI/ML Engineer &nbsp;·&nbsp; NYC</footer>
+
+<!-- ANIMATED PARTICLE BACKGROUND -->
+<script>
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const COLORS = ['rgba(100,255,218,', 'rgba(167,139,250,', 'rgba(244,114,182,'];
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.25;
+    this.vy = (Math.random() - 0.5) * 0.25;
+    this.r = Math.random() * 1.2 + 0.3;
+    this.alpha = Math.random() * 0.35 + 0.05;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = this.color + this.alpha + ')';
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+function drawConnections() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 100) {
+        const alpha = (1 - d/100) * 0.06;
+        ctx.strokeStyle = 'rgba(100,255,218,' + alpha + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+  drawConnections();
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
