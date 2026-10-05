@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Akshara Rathod Bhukya</title>
+<title>Akshara Rathod Bhukya | Applied AI Engineer</title>
+<meta name="description" content="Applied AI Engineer building LLM, RAG, and agentic AI systems. Explore work with LangGraph, Amazon Bedrock, Neo4j, and reliable production AI."/>
+<meta name="theme-color" content="#06080a"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -14,7 +16,7 @@
     --accent2: #a78bfa;
     --accent3: #f472b6;
     --text: #cdd5e0;
-    --muted: #4a6070;
+    --muted: #93a5b5;
     --border: rgba(100,255,218,0.1);
   }
 
@@ -563,16 +565,50 @@
     #contact { padding: 80px 28px; }
     nav { padding: 0 20px; }
   }
+
+  section { scroll-margin-top: 76px; }
+  .skip-link { position: fixed; top: -80px; left: 16px; z-index: 200; background: var(--accent); color: var(--bg); padding: 12px; }
+  .skip-link:focus { top: 8px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+  .project-body { display: flex; flex-direction: column; gap: 14px; }
+  .project-result { color: var(--accent); font-size: 12px; }
+  .section-note { color: var(--muted); font-size: 13px; margin-top: 24px; }
+  .education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .education-grid p { margin-top: 12px; }
+  .exp-role { font-size: 18px; }
+  .hero-bio, .project-desc { color: #a8b6c6; }
+  .bento-label { line-height: 1.6; }
+  @media (max-width: 540px) {
+    nav { padding: 0 12px; }
+    .nav-right { gap: 12px; }
+    .nav-right a { font-size: 9px; letter-spacing: .03em; }
+    .nav-wordmark { font-size: 12px; }
+    .hero-name { font-size: clamp(2.8rem, 12vw, 3.8rem); }
+    .hero-right, .skills-bento, .education-grid { grid-template-columns: 1fr; }
+    .hero-eyebrow { font-size: 10px; letter-spacing: .12em; }
+    .stat-card { padding: 24px; }
+    .exp-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .project-card.featured .project-visual { flex-wrap: wrap; }
+    .project-metric-block { flex: 1; min-width: 100px; }
+    .section-header { gap: 12px; }
+    .btn { padding: 11px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    #bg-canvas { display: none; }
+    * { transition: none !important; }
+  }
 </style>
 </head>
 <body>
 
 <!-- ANIMATED BACKGROUND CANVAS -->
-<canvas id="bg-canvas"></canvas>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <!-- NAV -->
-<nav>
-  <span class="nav-wordmark">ARB ✦</span>
+<a class="skip-link" href="#hero">Skip to content</a>
+<nav aria-label="Main navigation">
+  <span class="nav-wordmark">ARB</span>
   <div class="nav-right">
     <a href="#skills">Skills</a>
     <a href="#experience">Work</a>
@@ -584,258 +620,56 @@
 <!-- ══════════════ HERO ══════════════ -->
 <section id="hero" class="section">
   <div class="hero-left">
-    <div class="hero-eyebrow">OPEN TO AI/ML AND GEN AI OPPORTUNITES</div>
+    <div class="hero-eyebrow">OPEN TO APPLIED AI &amp; ML OPPORTUNITIES</div>
     <h1 class="hero-name">Akshara<br/><em>Rathod Bhukya</em></h1>
-    <p class="hero-role">AI/ML Engineer &nbsp;·&nbsp; New York City</p>
-    <p class="hero-bio">I see the world in patterns, systems, and how pieces connect.</p>
+    <p class="hero-role">Applied AI Engineer &nbsp;·&nbsp; Harrison, NJ</p>
+    <p class="hero-bio">I build AI systems that work in production.<br/>My work spans LLMs, RAG, agents, and machine learning across supply-chain, education, and analytics platforms. I focus on evaluation, observability, and reliable execution.</p>
     <div class="hero-actions">
       <a class="btn btn-solid" href="#projects">See My Work</a>
-      <a class="btn btn-outline" href="https://github.com/akshrathod" target="_blank">GitHub ↗</a>
-      <a class="btn btn-outline" href="https://linkedin.com/in/arbhukya/" target="_blank">LinkedIn ↗</a>
+      <a class="btn btn-outline" href="https://github.com/akshrathod" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/arbhukya/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
   </div>
 
   <div class="hero-right">
-    <div class="stat-card">
-      <div class="stat-num">3<sup>+</sup>Years</div>
-      <div class="stat-label">Data, ML & AI Experience</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">Context-Aware Systems</div>
-      <div class="stat-label">Finding the right information faster</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num" style="font-size:2.6rem">3.97 GPA</div>
-      <div class="stat-label">M.S. Machine Learning</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">Beyond the Prototype</div>
-      <div class="stat-label">Systems that actually run</div>
-    </div>
-
+    <div class="stat-card"><div class="stat-num">4<sup>+</sup> Years</div><div class="stat-label">AI, machine learning &amp; analytics</div></div>
+    <div class="stat-card"><div class="stat-num">Agents &amp; RAG</div><div class="stat-label">Tools, retrieval &amp; orchestration</div></div>
+    <div class="stat-card"><div class="stat-num">91%</div><div class="stat-label">Rule-generation accuracy in controlled evaluations</div></div>
+    <div class="stat-card"><div class="stat-num">Reliable AI</div><div class="stat-label">Evaluation, guardrails &amp; audit trails</div></div>
   </div>
 </section>
 
 <div class="hr"></div>
 
 <!-- ══════════════ SKILLS ══════════════ -->
-<section id="skills" class="section">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Tech Stack</h2>
-      <div class="section-line"></div>
-    </div>
-
-      <div class="bento-card">
-        <div class="bento-label">Programming and Frameworks</div>
-        <div class="skill-chips">
-          <span class="chip">Python</span><span class="chip">Tensorflow</span>
-          <span class="chip">PyTorch</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span>
-          <span class="chip">NumPy</span><span class="chip">OpenCV</span>
-        </div>
-      </div>
-
-      <div class="bento-card">
-        <div class="bento-label">Gen AI Systems</div>
-        <div class="skill-chips">
-          <span class="chip">LangChain</span><span class="chip">LlamaIndex</span>
-          <span class="chip">OpenAI API</span><span class="chip">Vector Databases</span>
-        </div>
-      </div>
-
-      <div class="bento-card">
-        <div class="bento-label">Systems and Deployment</div>
-        <div class="skill-chips">
-          <span class="chip">FastAPI</span><span class="chip">GCP</span><span class="chip">Azure</span>
-          <span class="chip">Docker</span><span class="chip">MLflow</span>
-        </div>
-      </div>
-
-    <div class="bento-card">
-        <div class="bento-label">Data and BI</div>
-        <div class="skill-chips">
-          <span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Tableau</span>
-          <span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
-          <span class="chip">ChromaDB</span><span class="chip">MongoDB</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+<section id="skills" class="section"><div class="section-inner"><div class="section-header"><span class="section-num">01</span><h2 class="section-title">Tech Stack</h2><div class="section-line"></div></div><div class="skills-bento"><div class="bento-card"><div class="bento-label">Agents &amp; LLM Systems</div><div class="skill-chips"><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">LlamaIndex</span><span class="chip">Amazon Bedrock</span><span class="chip">Tool Calling</span><span class="chip">Multi-Agent Orchestration</span><span class="chip">Human-in-the-Loop</span></div></div><div class="bento-card"><div class="bento-label">Retrieval &amp; Knowledge</div><div class="skill-chips"><span class="chip">Neo4j</span><span class="chip">Cypher</span><span class="chip">Redis Vector Search</span><span class="chip">BM25</span><span class="chip">ChromaDB</span><span class="chip">Reranking</span><span class="chip">Knowledge Graphs</span></div></div><div class="bento-card"><div class="bento-label">Evaluation &amp; Reliability</div><div class="skill-chips"><span class="chip">LangSmith</span><span class="chip">LLM-as-Judge</span><span class="chip">MLflow</span><span class="chip">Pydantic</span><span class="chip">Regression Testing</span><span class="chip">Observability</span><span class="chip">Audit Logging</span></div></div><div class="bento-card"><div class="bento-label">Cloud &amp; Deployment</div><div class="skill-chips"><span class="chip">AWS</span><span class="chip">GCP Cloud Run</span><span class="chip">Vertex AI</span><span class="chip">FastAPI</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span><span class="chip">Playwright</span></div></div><div class="bento-card"><div class="bento-label">Programming &amp; Machine Learning</div><div class="skill-chips"><span class="chip">Python</span><span class="chip">SQL / T-SQL</span><span class="chip">C++</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Scikit-learn</span><span class="chip">BERT</span><span class="chip">Forecasting</span></div></div><div class="bento-card"><div class="bento-label">Data &amp; Governance</div><div class="skill-chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Spark</span><span class="chip">Power BI</span><span class="chip">Data Modeling</span><span class="chip">PII Redaction</span><span class="chip">Access Controls</span></div></div></div></div></section>
 
 <div class="hr"></div>
 
 <!-- ══════════════ EXPERIENCE ══════════════ -->
-<section id="experience" class="section">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Experience</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="exp-timeline">
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-meta">
-          <span class="exp-role">AI/ML Engineer</span>
-          <span class="exp-period">Jul 2025 – Present</span>
-        </div>
-        <div class="exp-company">KGS Technology Group · Alpharetta, GA (Remote)</div>
-        <div class="exp-achievements">
-          <div class="achievement">Built a context-aware RAG chatbot with LangChain + ChromaDB, deployed to 50+ employees. <span class="metric-pill">↓80% search time</span> <span class="metric-pill">&lt;1.2s latency</span></div>
-          <div class="achievement">Evaluated 15+ LLM frameworks; built 3 GenAI PoCs - chat copilot, document Q&A, task automation agent.</div>
-          <div class="achievement">Automated ML validation pipelines with MLflow + AutoML retraining triggers for 24/7 production stability.</div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-meta">
-          <span class="exp-role">Generative AI Engineer</span>
-          <span class="exp-period">Aug 2024 – Jul 2025</span>
-        </div>
-        <div class="exp-company">Reality AI Inc. (formerly Radical X) · San Francisco, CA (Remote)</div>
-        <div class="exp-achievements">
-          <div class="achievement">Engineered RAG features for Marvel AI (LLM teaching assistant): quiz generator + PPT builder processing 3GB+ of course material.</div>
-          <div class="achievement">Upgraded retrieval from BM25 to hybrid semantic search - OpenAI embeddings + Redis. <span class="metric-pill">↑25% MRR</span> <span class="metric-pill">P95: 3.2s → 2.1s</span></div>
-          <div class="achievement">Deployed GenAI microservices on GCP Cloud Run via FastAPI. <span class="metric-pill">98.6% uptime</span></div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-meta">
-          <span class="exp-role">Teaching Assistant - Mathematical Foundations of ML</span>
-          <span class="exp-period">Jan 2023 – May 2024</span>
-        </div>
-        <div class="exp-company">Stevens Institute of Technology · Hoboken, NJ</div>
-        <div class="exp-achievements">
-          <div class="achievement">Supported 250+ graduate students across 3 semesters in probability theory, linear algebra, and optimization.</div>
-          <div class="achievement">Awarded Outstanding Course Assistant among 30+ TAs.</div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-meta">
-          <span class="exp-role">Business Intelligence Analyst</span>
-          <span class="exp-period">Jan 2021 – Dec 2022</span>
-        </div>
-        <div class="exp-company">Ekdham · Hyderabad, India</div>
-        <div class="exp-achievements">
-          <div class="achievement">Built inventory planning system with T-SQL + Power BI tracking 8 KPIs across 50+ B2B clients. <span class="metric-pill">↓28% waste</span></div>
-          <div class="achievement">Identified purchasing anomalies with Python workflows. <span class="metric-pill">↑15% avg order value</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="experience" class="section"><div class="section-inner"><div class="section-header"><span class="section-num">02</span><h2 class="section-title">Experience</h2><div class="section-line"></div></div><div class="exp-timeline"><article class="exp-item"><div class="exp-dot"></div><div class="exp-meta"><h3 class="exp-role">Applied AI Engineer</h3><span class="exp-period">Jul 2025 – Jun 2026</span></div><div class="exp-company">KGS Technology Group Inc. · Alpharetta, GA</div><div class="exp-achievements"><div class="achievement">Translated natural-language logistics policies into executable, schema-validated workflows with LangGraph, Amazon Bedrock, FastAPI, and Pydantic. <span class="metric-pill">91% rule-generation accuracy</span></div><div class="achievement">Orchestrated inventory, shipment, order, and policy-checking tools across 100+ operational scenarios, with bounded retries, persistent state, fallback paths, and human escalation.</div><div class="achievement">Added approval gates, 90-day backtesting, audit trails, versioned configurations, and rollback. <span class="metric-pill">21% fewer invalid or failed activations</span></div><div class="achievement">Built evaluation suites for planning, tool selection, grounding, and task completion; instrumented execution with latency, token, and failure traces.</div></div></article><article class="exp-item"><div class="exp-dot"></div><div class="exp-meta"><h3 class="exp-role">AI Engineer</h3><span class="exp-period">Aug 2024 – Jul 2025</span></div><div class="exp-company">Reality AI Inc. · San Francisco, CA</div><div class="exp-achievements"><div class="achievement">Built a configurable RAG quiz-generation platform indexing 3+ GB of PDF, DOCX, and HTML content with metadata-aware chunking and source-grounded generation.</div><div class="achievement">Combined BM25, Redis vector search, Neo4j graph retrieval, and reranking. <span class="metric-pill">18% improvement in Precision@5</span></div><div class="achievement">Parallelized retrieval and cached embeddings and results in Redis. <span class="metric-pill">P95 latency: 3.2s → 2.1s</span></div><div class="achievement">Established LangSmith evaluation and regression workflows. <span class="metric-pill">12% lower hallucination rate</span> <span class="metric-pill">Duplicates: 8% → 5%</span></div><div class="achievement">Deployed Dockerized FastAPI services to GCP Cloud Run with CI/CD and production monitoring.</div></div></article><article class="exp-item"><div class="exp-dot"></div><div class="exp-meta"><h3 class="exp-role">Machine Learning Engineer</h3><span class="exp-period">Jul 2020 – Aug 2022</span></div><div class="exp-company">Tech Mahindra · Hyderabad, India</div><div class="exp-achievements"><div class="achievement">Built Python and T-SQL pipelines for order, inventory, pricing, and demand data supporting 50+ B2B client accounts.</div><div class="achievement">Developed time-series forecasting and regression models for product demand, with error analysis and forecast monitoring.</div><div class="achievement">Used clustering and customer segmentation to inform pricing and purchasing insights. <span class="metric-pill">15% increase in average order value</span></div><div class="achievement">Combined demand forecasts with reorder thresholds and stock-exception logic. <span class="metric-pill">28% reduction in overstock and inventory waste</span></div></div></article></div></div></section>
 
 <div class="hr"></div>
 
 <!-- ══════════════ PROJECTS ══════════════ -->
-<section id="projects" class="section">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Projects</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="projects-grid">
-      <!-- FEATURED -->
-      <div class="project-card featured">
-        <div class="project-body">
-          <div class="bento-label" style="margin-bottom:10px">Featured</div>
-          <div class="project-title" style="font-size:18px;margin-bottom:10px">ScreenTrail UI Agent</div>
-          <div class="project-desc" style="font-size:14px">Dual-agent system (planner + executor) that converts natural-language into Playwright browser actions. Plan - validate - execute loop automates complex multi-step workflows with no human input.</div>
-          <div class="project-stack" style="margin-top:14px">
-            <span class="stack-tag">Multi-Agent</span>
-            <span class="stack-tag">Playwright</span>
-            <span class="stack-tag">LLM Orchestration</span>
-            <span class="stack-tag">Python</span>
-          </div>
-          <a class="project-link" style="margin-top:16px;display:inline-block" href="https://github.com/akshrathod/screentrail-ui-agent" target="_blank">github.com/akshrathod/screentrail-ui-agent ↗</a>
-        </div>
-        <div class="project-visual">
-          <div class="project-metric-block">
-            <div class="pmb-num">85%</div>
-            <div class="pmb-label">End-to-end success rate</div>
-          </div>
-          <div class="project-metric-block">
-            <div class="pmb-num">&lt;10s</div>
-            <div class="pmb-label">Per workflow (was 2–5 min)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-title">Toxic Spans Detection</div>
-        <div class="project-desc">Fine-tuned BERT for span-level toxicity labeling. Optimized tokenization, class weighting, and hyperparameters for high-sensitivity content moderation.</div>
-        <div class="project-stack">
-          <span class="stack-tag">BERT</span><span class="stack-tag">PyTorch</span><span class="stack-tag">NLP</span>
-        </div>
-        <div class="project-footer">
-          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">93% recall</span>
-          <a class="project-link" href="https://github.com/akshrathod/ToxicSpanDetection" target="_blank">GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-title">Exoplanet Classification</div>
-        <div class="project-desc">Ensemble classifiers on 9,500+ Kepler Objects of Interest with SMOTE oversampling and 67% dimensionality reduction via statistical feature selection.</div>
-        <div class="project-stack">
-          <span class="stack-tag">AdaBoost</span><span class="stack-tag">Random Forest</span><span class="stack-tag">SMOTE</span>
-        </div>
-        <div class="project-footer">
-          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">99% recall</span>
-          <a class="project-link" href="https://github.com/akshrathod/ExoplanetClassification" target="_blank">GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-title">AI vs. Human Text Classifier</div>
-        <div class="project-desc">SVM + neural networks with TF-IDF and Sentence-BERT to distinguish AI-generated vs. human responses across 1,000 Q&A pairs from 4 domains.</div>
-        <div class="project-stack">
-          <span class="stack-tag">SBERT</span><span class="stack-tag">SVM</span><span class="stack-tag">Selenium</span>
-        </div>
-        <div class="project-footer">
-          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">90% accuracy</span>
-          <a class="project-link" href="https://github.com/akshrathod/ai-vs-human" target="_blank">GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-title">Assistive Navigation - Visually Impaired</div>
-        <div class="project-desc">Real-time YOLOv3 + U-Net (ResNet34) prototype for outdoor navigation. 95% hazard detection. Published at national conference, top 3 of 30 presentations.</div>
-        <div class="project-stack">
-          <span class="stack-tag">YOLOv3</span><span class="stack-tag">U-Net</span><span class="stack-tag">CV</span><span class="stack-tag">Published</span>
-        </div>
-        <div class="project-footer">
-          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent)">98% distance accuracy</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="projects" class="section"><div class="section-inner"><div class="section-header"><span class="section-num">03</span><h2 class="section-title">Selected Projects</h2><div class="section-line"></div></div><div class="projects-grid"><article class="project-card featured"><div class="project-body"><div class="bento-label">Featured project</div><h3 class="project-title">Multi-Agent Expert Discovery</h3><p class="project-desc">Evidence-backed researcher discovery from papers. Specialized agents extract researchers and capabilities into Neo4j; hybrid lexical, vector, and graph retrieval uses Reciprocal Rank Fusion to return experts with provenance and explainable rankings. PII redaction, validation, bounded retries, and idempotent writes protect ingestion.</p><div class="project-stack"><span class="stack-tag">LangGraph</span><span class="stack-tag">Amazon Bedrock</span><span class="stack-tag">Neo4j</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Pydantic</span></div><a class="project-link" href="https://github.com/akshrathod/who-knows-this" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div><div class="project-visual"><div class="project-metric-block"><div class="pmb-num">0.84</div><div class="pmb-label">Precision@5 on benchmark queries</div></div><div class="project-metric-block"><div class="pmb-num">88%</div><div class="pmb-label">Extraction F1, up from 64%</div></div></div></article><article class="project-card"><h3 class="project-title">ScreenTrail UI Agent</h3><p class="project-desc">Supervisor-led automation across Notion and Linear, coordinating planning, Playwright execution, validation, and replanning. DOM checks, fallback locators, and persistent sessions improve recovery; role-scoped authorization and approval checkpoints control high-impact actions.</p><div class="project-stack"><span class="stack-tag">Multi-Agent</span><span class="stack-tag">Playwright</span><span class="stack-tag">Python</span><span class="stack-tag">Tool Calling</span></div><div class="project-footer"><span class="project-result">85% end-to-end completion</span><a class="project-link" href="https://github.com/akshrathod/screentrail-ui-agent" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div></article><article class="project-card"><h3 class="project-title">Toxic Spans Detection</h3><p class="project-desc">Fine-tuned BERT for span-level toxicity labeling, with tokenization, class weighting, and hyperparameter tuning for content moderation.</p><div class="project-stack"><span class="stack-tag">BERT</span><span class="stack-tag">PyTorch</span><span class="stack-tag">NLP</span></div><div class="project-footer"><span class="project-result">93% recall</span><a class="project-link" href="https://github.com/akshrathod/ToxicSpanDetection" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div></article><article class="project-card"><h3 class="project-title">Exoplanet Classification</h3><p class="project-desc">Classified 9,500+ Kepler Objects of Interest using ensemble models, SMOTE, and statistical feature selection to reduce dimensionality.</p><div class="project-stack"><span class="stack-tag">AdaBoost</span><span class="stack-tag">Random Forest</span><span class="stack-tag">SMOTE</span></div><div class="project-footer"><span class="project-result">99% recall</span><a class="project-link" href="https://github.com/akshrathod/ExoplanetClassification" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div></article><article class="project-card"><h3 class="project-title">AI vs. Human Text Classifier</h3><p class="project-desc">Compared SVM and neural-network approaches using TF-IDF and Sentence-BERT on 1,000 question-answer pairs across four domains.</p><div class="project-stack"><span class="stack-tag">Sentence-BERT</span><span class="stack-tag">SVM</span><span class="stack-tag">NLP</span></div><div class="project-footer"><span class="project-result">90% accuracy</span><a class="project-link" href="https://github.com/akshrathod/ai-vs-human" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div></article></div><p class="section-note">Results reflect each project’s evaluation dataset and workflow scope.</p></div></section>
 
 <div class="hr"></div>
 
-<!-- ══════════════ CONTACT ══════════════ -->
+<section id="education" class="section"><div class="section-inner"><div class="section-header"><span class="section-num">04</span><h2 class="section-title">Education</h2><div class="section-line"></div></div><div class="education-grid"><article class="bento-card"><div class="bento-label">Stevens Institute of Technology · Hoboken, NJ</div><h3 class="project-title">M.S. in Machine Learning</h3><p>May 2024 · GPA: 3.97 / 4.00</p><p class="section-note">Outstanding Course Assistant Award</p></article><article class="bento-card"><div class="bento-label">Visvesvaraya National Institute of Technology · India</div><h3 class="project-title">B.Tech. in Electronics and Communication</h3><p>May 2021</p></article></div></div></section>
+<div class="hr"></div>
+<!-- CONTACT -->
 <section id="contact">
-  <h2 class="contact-title">Let's build<br/><em>something real.</em></h2>
-  <p class="contact-sub">Open to full-time roles in AI/ML and GenAI across the U.S. · Remote or On-site</p>
+  <h2 class="contact-title">Let’s connect<br/><em>and build.</em></h2>
+  <p class="contact-sub">Open to Applied AI, GenAI, and ML engineering opportunities.<br/>Always happy to connect with people building interesting things, especially around agents, RAG, and LLM reliability.</p>
   <div class="contact-row">
-    <a class="btn btn-outline" href="mailto:akshara03b@gmail.com">Email ↗</a>
-    <a class="btn btn-outline" href="https://linkedin.com/in/arbhukya/" target="_blank">LinkedIn ↗</a>
-    <a class="btn btn-outline" href="https://github.com/akshrathod" target="_blank">GitHub ↗</a>
+    <a class="btn btn-outline" href="mailto:rathodaksh76@gmail.com">Email Me ↗</a>
+    <a class="btn btn-outline" href="https://linkedin.com/in/arbhukya/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    <a class="btn btn-outline" href="https://github.com/akshrathod" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
   </div>
 </section>
 
-<footer>© 2026 Akshara Rathod Bhukya &nbsp;·&nbsp; AI/ML Engineer &nbsp;·&nbsp; NYC</footer>
+<footer>© 2026 Akshara Rathod Bhukya &nbsp;·&nbsp; Applied AI Engineer &nbsp;·&nbsp; Harrison, NJ</footer>
 
 <!-- ANIMATED PARTICLE BACKGROUND -->
 <script>
@@ -902,7 +736,7 @@ function animate() {
   particles.forEach(p => { p.update(); p.draw(); });
   requestAnimationFrame(animate);
 }
-animate();
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animate();
 </script>
 </body>
 </html>
